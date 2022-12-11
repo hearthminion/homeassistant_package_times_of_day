@@ -1,11 +1,13 @@
 binary_sensor:
   - platform: tod
+    unique_id: "9bb5ca0c-770a-4c86-a5de-0160d44ef811"
     name: "Predawn"
     after: "sunrise"
     after_offset: "-00:30"
     before: "sunrise"
 
   - platform: tod
+    unique_id: "1e13c977-9c65-4e15-b078-fe8c27d5712f"
     name: "Predusk"
     after: "sunset"
     after_offset: "-00:30"
