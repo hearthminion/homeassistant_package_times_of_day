@@ -8,19 +8,19 @@ template:
              (state_attr('sun.sun', 'elevation')) < 0 }}
 
       - unique_id: "3e77a9c4-3896-4eac-b4dc-9d8197ebdafd"
-        name: "[TOD] Astronomical Twilight"
+        name: "[TOD] Twilight Astronomical"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -18.01 and
              (state_attr('sun.sun', 'elevation')) < -12.00 }}
 
       - unique_id: "6ef280e8-c2ff-4cfc-a938-716baf431080"
-        name: "[TOD] Nautical Twilight"
+        name: "[TOD] Twilight Nautical"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -12.01 and
              (state_attr('sun.sun', 'elevation')) < -6.00 }}
 
       - unique_id: "ebaf6190-1542-460d-8517-944f6166d808"
-        name: "[TOD] Civil Twilight"
+        name: "[TOD] Twilight Civil"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -6.01 and
              (state_attr('sun.sun', 'elevation')) < 0.00 }}
@@ -33,21 +33,21 @@ template:
              states("binary_sensor.tod_before_noon") }}
 
       - unique_id: "1d266919-118c-4b21-886d-df3060f2fc09"
-        name: "[TOD] Astronomical Dawn"
+        name: "[TOD] Dawn Astronomical"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -18.01 and
              (state_attr('sun.sun', 'elevation')) < -12.00 and
              states("binary_sensor.tod_before_noon") }}
 
       - unique_id: "085fd8f5-0063-4861-9ec4-f93981033f11"
-        name: "[TOD] Nautical Dawn"
+        name: "[TOD] Dawn Nautical"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -12.01 and
              (state_attr('sun.sun', 'elevation')) < -6.00 and
              states("binary_sensor.tod_before_noon") }}
 
       - unique_id: "fbaaafc1-8dd7-4c89-87c2-2f790e4b86bc"
-        name: "[TOD] Civil Dawn"
+        name: "[TOD] Dawn Civil"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -6.01 and
              (state_attr('sun.sun', 'elevation')) < 0.00 and
@@ -61,21 +61,21 @@ template:
              (states("binary_sensor.tod_before_noon")) == "off" }}
 
       - unique_id: "3f31c8bc-c13d-4c97-9005-9de4224042ed"
-        name: "[TOD] Astronomical Dusk"
+        name: "[TOD] Dusk Astronomical"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -18.01 and
              (state_attr('sun.sun', 'elevation')) < -12.00 and
              (states("binary_sensor.tod_before_noon")) == "off" }}
 
       - unique_id: "536d1e93-f6e6-4d65-899c-6d86ffd47b00"
-        name: "[TOD] Nautical Dusk"
+        name: "[TOD] Dusk Nautical"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -12.01 and
              (state_attr('sun.sun', 'elevation')) < -6.00 and
              (states("binary_sensor.tod_before_noon")) == "off" }}
 
       - unique_id: "b48fecfd-7829-42f7-9b76-e9e5d7fa3218"
-        name: "[TOD] Civil Dusk"
+        name: "[TOD] Dusk Civil"
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -6.01 and
              (state_attr('sun.sun', 'elevation')) < 0.00 and
@@ -95,20 +95,30 @@ template:
       - unique_id: "4cb829f2-0ed2-4905-a845-ce59f76293a9"
         name: "[TOD] Astronomical Time of Day"
         state: >-
-          {% if is_state("binary_sensor.tod_astronomical_dawn", "on") %}
-            Astronomical Dawn
-          {% elif is_state("binary_sensor.tod_nautical_dawn", "on") %}
-            Nautical Dawn
-          {% elif is_state("binary_sensor.tod_civil_dawn", "on") %}
-            Civil Dawn
+          {% if is_state("binary_sensor.tod_dawn", "on") %}
+            {% if is_state("binary_sensor.tod_dawn_astronomical", "on") %}
+              Astronomical Dawn
+            {% elif is_state("binary_sensor.tod_dawn_nautical", "on") %}
+              Nautical Dawn
+            {% elif is_state("binary_sensor.tod_dawn_civil", "on") %}
+              Civil Dawn
+            {% else %}
+              Dawn
+            {% endif %}
+          {% elif is_state("binary_sensor.tod_dusk", "on" %}
+            {% if is_state("binary_sensor.tod_dusk_civil", "on") %}
+              Civil Dusk
+            {% elif is_state("binary_sensor.tod_dusk_nautical", "on") %}
+              Nautical Dusk
+            {% elif is_state("binary_sensor.tod_dusk_astronomical", "on") %}
+              Astronomical Dusk
+            {% else %}
+              Dusk
+            {% endif %}
           {% elif is_state("binary_sensor.tod_day", "on") %}
             Day
-          {% elif is_state("binary_sensor.tod_civil_dusk", "on") %}
-            Civil Dusk
-          {% elif is_state("binary_sensor.tod_nautical_dusk", "on") %}
-            Nautical Dusk
-          {% elif is_state("binary_sensor.tod_astronomical_dusk", "on") %}
-            Astronomical Dusk
-          {% else %}
+          {% elif is_state("binary_sensor.tod_night", "on" %}
             Night
+          {% else %}
+            Error
           {% endif %}
