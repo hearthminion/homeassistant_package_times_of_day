@@ -71,11 +71,11 @@ template:
         name: "[TOD] Social Times of Day"
         state: >-
           {% if is_state("binary_sensor.tod_morning", "on") %}
-            {% if is_state("binary_sensor.tod_morning_early", "on" %}
+            {% if is_state("binary_sensor.tod_morning_early", "on") %}
               Early Morning
-            {% elif is_state("binary_sensor.tod_morning_mid", "on" %}
+            {% elif is_state("binary_sensor.tod_morning_mid", "on") %}
               Mid-Morning
-            {% elif is_state("binary_sensor.tod_morning_late", "on" %}
+            {% elif is_state("binary_sensor.tod_morning_late", "on") %}
               Late Morning
             {% else %}
               Morning
@@ -91,9 +91,9 @@ template:
               Afternoon
             {% endif %}
           {% elif is_state("binary_sensor.tod_evening", "on") %}
-            {% if is_state("binary_sensor.tod_evening_early", "on" %}
+            {% if is_state("binary_sensor.tod_evening_early", "on") %}
               Early Evening
-            {% elif is_state("binary_sensor.tod_evening_late", "on" %}
+            {% elif is_state("binary_sensor.tod_evening_late", "on") %}
               Late Evening
             {% else %}
               Evening
@@ -101,4 +101,3 @@ template:
           {% else %}
             Night
           {% endif %}
-
