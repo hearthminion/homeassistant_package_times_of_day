@@ -117,7 +117,7 @@ template:
             {% endif %}
           {% elif is_state("binary_sensor.tod_day", "on") %}
             Day
-          {% elif is_state("binary_sensor.tod_night", "on" %}
+          {% elif is_state("binary_sensor.tod_night", "on") %}
             Night
           {% else %}
             Error
