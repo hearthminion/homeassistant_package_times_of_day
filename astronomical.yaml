@@ -105,7 +105,7 @@ template:
             {% else %}
               Dawn
             {% endif %}
-          {% elif is_state("binary_sensor.tod_dusk", "on" %}
+          {% elif is_state("binary_sensor.tod_dusk", "on") %}
             {% if is_state("binary_sensor.tod_dusk_civil", "on") %}
               Civil Dusk
             {% elif is_state("binary_sensor.tod_dusk_nautical", "on") %}
