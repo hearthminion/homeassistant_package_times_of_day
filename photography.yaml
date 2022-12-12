@@ -1,0 +1,13 @@
+template:
+  - binary_sensor:
+      - unique_id: "381dc7c5-7210-440b-a1c9-87cfe819fd21"
+        name: "Blue Hour"
+        state: >-
+          {{ (state_attr('sun.sun', 'elevation')) > -8 and
+          (state_attr('sun.sun', 'elevation')) < -4 }}
+
+      - unique_id: "70e78898-7187-4004-ab6a-9e4c6556fe44"
+        name: "Golden Hour"
+        state: >-
+          {{ (state_attr('sun.sun', 'elevation')) > -6 and
+             (state_attr('sun.sun', 'elevation')) < 6 }}
