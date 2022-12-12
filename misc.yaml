@@ -19,12 +19,28 @@ binary_sensor:
     after: "00:00:00"
     before: "11:59:59"
 
+  # ================================================================================================
+  #
+  # Witching Hour
+  #
+  # Ref:
+  #   - https://en.wikipedia.org/wiki/Witching_hour
+  #
+  # ================================================================================================
   - platform: tod
     unique_id: "bfa2e19f-204a-4c67-a58f-382feb460eb6"
     name: "[TOD] Witching Hour"
     after: "00:00:00"
     before: "01:00:00"
 
+  # ================================================================================================
+  #
+  # Stupid O'clock
+  #
+  # Ref:
+  #   - https://en.wiktionary.org/wiki/stupid_o%27clock#English
+  #
+  # ================================================================================================
   - platform: tod
     unique_id: "407cb714-c519-4e41-8b15-cfdf7aa6a6fd"
     name: "[TOD] Stupid O'clock"
