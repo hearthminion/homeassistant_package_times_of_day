@@ -51,7 +51,7 @@ template:
         state: >-
           {{ (state_attr('sun.sun', 'elevation')) > -6.01 and
              (state_attr('sun.sun', 'elevation')) < 0.00 and
-             states("binary_sensor.tod_before_noon")) }}
+             states("binary_sensor.tod_before_noon") }}
 
       - unique_id: "3b07b0ce-4346-48e2-a801-3b9f1955f64c"
         name: "[TOD] Dusk"
