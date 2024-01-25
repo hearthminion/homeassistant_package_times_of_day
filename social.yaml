@@ -1,0 +1,107 @@
+binary_sensor:
+  - platform: tod
+    unique_id: "23eced77-69ea-4f2f-afa5-f840d7d5f883"
+    name: "[TOD] Morning"
+    after: "02:00:00"
+    before: "12:00:00"
+
+  - platform: tod
+    unique_id: "c5c2aceb-ce44-44d3-b454-a3ddad2a3e6c"
+    name: "[TOD] Morning Early"
+    after: "02:00:00"
+    before: "06:00:00"
+
+  - platform: tod
+    unique_id: "5dce7c49-ef85-405b-97ce-110bc035d380"
+    name: "[TOD] Morning Mid"
+    after: "09:00:00"
+    before: "10:30:00"
+
+  - platform: tod
+    unique_id: "b27abcd8-5cb6-4fa2-b72a-77b50af04a94"
+    name: "[TOD] Morning Late"
+    after: "10:30:00"
+    before: "12:00:00"
+
+  - platform: tod
+    unique_id: "11ecd6be-1ac6-4353-bc3c-fe8ceac2dea1"
+    name: "[TOD] Afternoon"
+    after: "12:00:00"
+    before: "17:00:00"
+
+  - platform: tod
+    unique_id: "04afbac2-2e55-424d-b757-6caa6e0a3717"
+    name: "[TOD] Afternoon Early"
+    after: "12:00:00"
+    before: "14:00:00"
+
+  - platform: tod
+    unique_id: "a297b816-3081-4124-a886-7ee327979d8b"
+    name: "[TOD] Afternoon Mid"
+    after: "14:00:00"
+    before: "16:00:00"
+
+  - platform: tod
+    unique_id: "cabff691-919e-4903-a4e4-3c9cba90febd"
+    name: "[TOD] Afternoon Late"
+    after: "16:00:00"
+    before: "17:00:00"
+
+  - platform: tod
+    unique_id: "0407bde1-559a-48e6-a164-e897ce5c0cfb"
+    name: "[TOD] Evening"
+    after: "17:00:00"
+    before: "23:00:00"
+
+  - platform: tod
+    unique_id: "4203d49a-803d-4d59-95dd-2946e1d68106"
+    name: "[TOD] Evening Early"
+    after: "17:00:00"
+    before: "18:30:00"
+
+  - platform: tod
+    unique_id: "7d96d456-c2ed-4450-afdc-71a7d1b91dd2"
+    name: "[TOD] Evening Late"
+    after: "21:00:00"
+    before: "23:00:00"
+
+template:
+  - sensor:
+      - unique_id: "7a0551a0-9ed9-4745-958b-498630394e41"
+        name: "[TOD] Social Times of Day"
+        state: >-
+          {% if is_state("binary_sensor.tod_morning", "on") %}
+            {% if is_state("binary_sensor.tod_morning_early", "on") %}
+              Early Morning
+            {% elif is_state("binary_sensor.tod_morning_mid", "on") %}
+              Mid-Morning
+            {% elif is_state("binary_sensor.tod_morning_late", "on") %}
+              Late Morning
+            {% else %}
+              Morning
+            {% endif %}
+          {% elif is_state("binary_sensor.tod_afternoon", "on") %}
+            {% if is_state("binary_sensor.tod_afternoon_early", "on") %}
+              Early Afternoon
+            {% elif is_state("Binary_sensor.tod_afternoon_late", "on") %}
+              Late Afternoon
+            {% elif is_state("binary_sensor.tod_afternoon_mid", "on")  %}
+              Mid-Afternoon
+            {% else %}
+              Afternoon
+            {% endif %}
+          {% elif is_state("binary_sensor.tod_evening", "on") %}
+            {% if is_state("binary_sensor.tod_evening_early", "on") %}
+              Early Evening
+            {% elif is_state("binary_sensor.tod_evening_late", "on") %}
+              Late Evening
+            {% else %}
+              Evening
+            {% endif %}
+          {% elif is_state("binary_sensor.tod_day", "on") %}
+            Day
+          {% elif is_state("binary_sensor.tod_night", "on") %}
+            Night
+          {% else %}
+            Error
+          {% endif %}

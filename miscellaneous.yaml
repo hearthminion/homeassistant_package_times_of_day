@@ -1,0 +1,48 @@
+binary_sensor:
+  - platform: tod
+    unique_id: "9bb5ca0c-770a-4c86-a5de-0160d44ef811"
+    name: "[TOD] Predawn"
+    after: "sunrise"
+    after_offset: "-00:30"
+    before: "sunrise"
+
+  - platform: tod
+    unique_id: "1e13c977-9c65-4e15-b078-fe8c27d5712f"
+    name: "[TOD] Predusk"
+    after: "sunset"
+    after_offset: "-00:30"
+    before: "sunset"
+
+  - platform: tod
+    unique_id: "7465fbbd-6213-4127-877a-cce8a818232f"
+    name: "[TOD] Before Noon"
+    after: "00:00:00"
+    before: "11:59:59"
+
+  # ================================================================================================
+  #
+  # Witching Hour
+  #
+  # Ref:
+  #   - https://en.wikipedia.org/wiki/Witching_hour
+  #
+  # ================================================================================================
+  - platform: tod
+    unique_id: "bfa2e19f-204a-4c67-a58f-382feb460eb6"
+    name: "[TOD] Witching Hour"
+    after: "00:00:00"
+    before: "01:00:00"
+
+  # ================================================================================================
+  #
+  # Stupid O'clock
+  #
+  # Ref:
+  #   - https://en.wiktionary.org/wiki/stupid_o%27clock#English
+  #
+  # ================================================================================================
+  - platform: tod
+    unique_id: "407cb714-c519-4e41-8b15-cfdf7aa6a6fd"
+    name: "[TOD] Stupid O'clock"
+    after: "23:00:00"
+    before: "05:00:00"
